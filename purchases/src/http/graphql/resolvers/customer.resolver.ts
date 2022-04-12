@@ -20,7 +20,7 @@ export class CustomersResolver {
     private purchasesService: PurchasesService,
   ) {}
 
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   @Query(() => Customer)
   me(@CurrentUser() user: AuthUser) {
     return this.customersService.getCustomertbyAuthUserId(user.sub);

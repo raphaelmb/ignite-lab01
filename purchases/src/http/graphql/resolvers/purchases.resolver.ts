@@ -25,7 +25,7 @@ export class PurchasesResolver {
   ) {}
 
   @Query(() => [Purchase])
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   purchases() {
     return this.purchaseService.listAllPurchases();
   }
@@ -36,7 +36,7 @@ export class PurchasesResolver {
   }
 
   @Mutation(() => Purchase)
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   async createPurchase(
     @Args('data') data: CreatePurchaseInput,
     @CurrentUser() user: AuthUser,

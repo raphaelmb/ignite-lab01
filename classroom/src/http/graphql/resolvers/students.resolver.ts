@@ -14,13 +14,13 @@ export class StudentsResolver {
   ) {}
 
   @Query(() => Student)
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   me(@CurrentUser() user: AuthUser) {
     return this.studentsService.getStudentByAuthId(user.sub);
   }
 
   @Query(() => [Student])
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   students() {
     return this.studentsService.listAllStudents();
   }

@@ -17,13 +17,13 @@ export class CoursesResolver {
   ) {}
 
   @Query(() => [Course])
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   courses() {
     return this.coursesService.listAllCourses();
   }
 
   @Query(() => Course)
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   async course(@Args('id') id: string, @CurrentUser() user: AuthUser) {
     const student = await this.studentsService.getStudentByAuthId(user.sub);
 
@@ -44,7 +44,7 @@ export class CoursesResolver {
   }
 
   @Mutation(() => Course)
-  // @UseGuards(AuthorizationGuard)
+  @UseGuards(AuthorizationGuard)
   createCourse(@Args('data') data: CreateCourseInput) {
     return this.coursesService.createCourse(data);
   }
