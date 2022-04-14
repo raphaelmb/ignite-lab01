@@ -6,6 +6,7 @@ import {
   Args,
   ResolveField,
   Parent,
+  ResolveReference,
 } from '@nestjs/graphql';
 import { CustomersService } from '../../../services/customers.service';
 import { PurchasesService } from '../../../services/purchases.service';
@@ -29,5 +30,10 @@ export class CustomersResolver {
   @ResolveField()
   purchases(@Parent() customer: Customer) {
     return this.purchasesService.listAllFromCustomer(customer.id);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { authUserId: string }) {
+    return this.customersService.getCustomertbyAuthUserId(reference.authUserId);
   }
 }
